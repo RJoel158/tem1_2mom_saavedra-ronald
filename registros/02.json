@@ -2,9 +2,9 @@
   "pregunta_id": "02",
   "titulo": "Pregunta 2. Auditoría Integral de Calidad e Integridad de Datos",
   "comando_sql": "SELECT\n                COUNT(*) AS total_registros,\n                COUNT(row_id) - COUNT(DISTINCT row_id) AS duplicados_row_id,\n                COUNT(DISTINCT order_id) AS ordenes_unicas,\n                COUNT(DISTINCT customer_id) AS clientes_unicos,\n                SUM(CASE WHEN row_id IS NULL OR order_id IS NULL OR order_date IS NULL OR \n                              customer_id IS NULL OR product_id IS NULL OR sales IS NULL OR \n                              profit IS NULL THEN 1 ELSE 0 END) AS campos_con_valores_null,\n                SUM(CASE WHEN order_date IS NULL OR ship_date IS NULL THEN 1 ELSE 0 END) AS fechas_invalidas_inconsistentes,\n                SUM(CASE WHEN sales <= 0 THEN 1 ELSE 0 END) AS ventas_menor_igual_cero,\n                SUM(CASE WHEN discount < 0.0 OR discount > 1.0 THEN 1 ELSE 0 END) AS descuentos_fuera_intervalo,\n                SUM(CASE WHEN ship_date < order_date THEN 1 ELSE 0 END) AS envio_anterior_a_pedido,\n                SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) AS registros_con_perdida_operativa\n            FROM superstore_analitica;",
-  "fecha_ejecucion": "2026-11-11T09:15:48.171307-04:00",
+  "fecha_ejecucion": "2026-11-11T09:59:26.327092-04:00",
   "filas_retornadas": 1,
-  "tiempo_segundos": 0.0089,
+  "tiempo_segundos": 0.0096,
   "columnas": [
     "total_registros",
     "duplicados_row_id",

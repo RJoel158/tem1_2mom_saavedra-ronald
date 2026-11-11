@@ -2,9 +2,9 @@
   "pregunta_id": "05",
   "titulo": "Pregunta 5. Ranking de Productos según Rentabilidad y Volumen Comercial",
   "comando_sql": "WITH producto_metricas AS (\n                SELECT\n                    product_id,\n                    product_name,\n                    category,\n                    sub_category,\n                    ROUND(SUM(sales), 2) AS ventas_totales,\n                    ROUND(SUM(profit), 2) AS ganancia_total,\n                    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS margen_rentabilidad_pct\n                FROM superstore_analitica\n                GROUP BY product_id, product_name, category, sub_category\n            ),\n            producto_analitico AS (\n                SELECT\n                    product_id,\n                    product_name,\n                    category,\n                    sub_category,\n                    ventas_totales,\n                    ganancia_total,\n                    margen_rentabilidad_pct,\n                    DENSE_RANK() OVER (PARTITION BY category ORDER BY ganancia_total DESC) AS rank_ganancia_categoria,\n                    RANK() OVER (ORDER BY ventas_totales DESC) AS rank_ventas_global,\n                    RANK() OVER (ORDER BY ganancia_total ASC) AS rank_peor_rentabilidad_global,\n                    ROUND(SUM(ganancia_total) OVER (\n                        PARTITION BY category \n                        ORDER BY ganancia_total DESC \n                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n                    ), 2) AS ganancia_acumulada_categoria\n                FROM producto_metricas\n            )\n            SELECT\n                category,\n                rank_ganancia_categoria,\n                SUBSTR(product_name, 1, 45) AS producto,\n                ventas_totales,\n                ganancia_total,\n                margen_rentabilidad_pct,\n                ganancia_acumulada_categoria\n            FROM producto_analitico\n            WHERE rank_ganancia_categoria <= 3\n            ORDER BY category, rank_ganancia_categoria ASC;",
-  "fecha_ejecucion": "2026-11-11T09:15:48.222331-04:00",
+  "fecha_ejecucion": "2026-11-11T09:59:26.376889-04:00",
   "filas_retornadas": 9,
-  "tiempo_segundos": 0.0104,
+  "tiempo_segundos": 0.0105,
   "columnas": [
     "category",
     "rank_ganancia_categoria",

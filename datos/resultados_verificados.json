@@ -205,46 +205,46 @@
         "perfil_cliente_rfm": "Clientes de Alto Valor (Champions)",
         "total_clientes": 180,
         "porcentaje_clientes_pct": 22.7,
-        "recency_promedio_dias": 31.9,
+        "recency_promedio_dias": 31.7,
         "frecuencia_promedio_ordenes": 8.7,
-        "facturacion_total_usd": 829709.6,
-        "ticket_promedio_acumulado_usd": 4609.5
+        "facturacion_total_usd": 818872.45,
+        "ticket_promedio_acumulado_usd": 4549.29
       },
       {
         "perfil_cliente_rfm": "Clientes Recurrentes Fidelizados (Loyal)",
-        "total_clientes": 188,
-        "porcentaje_clientes_pct": 23.71,
-        "recency_promedio_dias": 140.5,
+        "total_clientes": 190,
+        "porcentaje_clientes_pct": 23.96,
+        "recency_promedio_dias": 143.3,
         "frecuencia_promedio_ordenes": 8.1,
-        "facturacion_total_usd": 646739.01,
-        "ticket_promedio_acumulado_usd": 3440.1
+        "facturacion_total_usd": 653279.72,
+        "ticket_promedio_acumulado_usd": 3438.31
       },
       {
         "perfil_cliente_rfm": "Nuevos / Prometedores (Promising)",
         "total_clientes": 151,
         "porcentaje_clientes_pct": 19.04,
-        "recency_promedio_dias": 33.9,
+        "recency_promedio_dias": 34.0,
         "frecuencia_promedio_ordenes": 4.4,
-        "facturacion_total_usd": 325586.16,
-        "ticket_promedio_acumulado_usd": 2156.2
+        "facturacion_total_usd": 336823.01,
+        "ticket_promedio_acumulado_usd": 2230.62
       },
       {
         "perfil_cliente_rfm": "En Riesgo de Abandono (At Risk)",
-        "total_clientes": 133,
-        "porcentaje_clientes_pct": 16.77,
-        "recency_promedio_dias": 219.0,
+        "total_clientes": 131,
+        "porcentaje_clientes_pct": 16.52,
+        "recency_promedio_dias": 209.9,
         "frecuencia_promedio_ordenes": 5.6,
-        "facturacion_total_usd": 317039.62,
-        "ticket_promedio_acumulado_usd": 2383.76
+        "facturacion_total_usd": 310741.25,
+        "ticket_promedio_acumulado_usd": 2372.07
       },
       {
         "perfil_cliente_rfm": "Inactivos / Hibernando (Hibernating)",
         "total_clientes": 141,
         "porcentaje_clientes_pct": 17.78,
-        "recency_promedio_dias": 354.6,
+        "recency_promedio_dias": 360.6,
         "frecuencia_promedio_ordenes": 3.5,
-        "facturacion_total_usd": 178126.64,
-        "ticket_promedio_acumulado_usd": 1263.31
+        "facturacion_total_usd": 177484.6,
+        "ticket_promedio_acumulado_usd": 1258.76
       }
     ]
   },

@@ -5,8 +5,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/01.json",
     "filas": 1,
-    "tiempo_segundos": 0.0074,
-    "fecha_ejecucion": "2026-11-11T09:15:48.158163-04:00"
+    "tiempo_segundos": 0.0083,
+    "fecha_ejecucion": "2026-11-11T09:59:26.313560-04:00"
   },
   {
     "punto": "02",
@@ -14,8 +14,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/02.json",
     "filas": 1,
-    "tiempo_segundos": 0.0089,
-    "fecha_ejecucion": "2026-11-11T09:15:48.171307-04:00"
+    "tiempo_segundos": 0.0096,
+    "fecha_ejecucion": "2026-11-11T09:59:26.327092-04:00"
   },
   {
     "punto": "03",
@@ -23,8 +23,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/03.json",
     "filas": 16,
-    "tiempo_segundos": 0.0117,
-    "fecha_ejecucion": "2026-11-11T09:15:48.185630-04:00"
+    "tiempo_segundos": 0.0113,
+    "fecha_ejecucion": "2026-11-11T09:59:26.340382-04:00"
   },
   {
     "punto": "04",
@@ -32,8 +32,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/04.json",
     "filas": 5,
-    "tiempo_segundos": 0.0222,
-    "fecha_ejecucion": "2026-11-11T09:15:48.209840-04:00"
+    "tiempo_segundos": 0.0225,
+    "fecha_ejecucion": "2026-11-11T09:59:26.364756-04:00"
   },
   {
     "punto": "05",
@@ -41,8 +41,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/05.json",
     "filas": 9,
-    "tiempo_segundos": 0.0104,
-    "fecha_ejecucion": "2026-11-11T09:15:48.222331-04:00"
+    "tiempo_segundos": 0.0105,
+    "fecha_ejecucion": "2026-11-11T09:59:26.376889-04:00"
   },
   {
     "punto": "06",
@@ -50,8 +50,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/06.json",
     "filas": 4,
-    "tiempo_segundos": 0.0074,
-    "fecha_ejecucion": "2026-11-11T09:15:48.231682-04:00"
+    "tiempo_segundos": 0.0072,
+    "fecha_ejecucion": "2026-11-11T09:59:26.385864-04:00"
   },
   {
     "punto": "07",
@@ -59,8 +59,8 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/07.json",
     "filas": 48,
-    "tiempo_segundos": 0.0092,
-    "fecha_ejecucion": "2026-11-11T09:15:48.243248-04:00"
+    "tiempo_segundos": 0.0088,
+    "fecha_ejecucion": "2026-11-11T09:59:26.396741-04:00"
   },
   {
     "punto": "08",
@@ -68,7 +68,7 @@
     "tipo": "captura_terminal_renderizada",
     "fuente": "registros/08.json",
     "filas": 2,
-    "tiempo_segundos": 0.0147,
-    "fecha_ejecucion": "2026-11-11T09:15:48.260301-04:00"
+    "tiempo_segundos": 0.0157,
+    "fecha_ejecucion": "2026-11-11T09:59:26.414971-04:00"
   }
 ]

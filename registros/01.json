@@ -2,9 +2,9 @@
   "pregunta_id": "01",
   "titulo": "Pregunta 1. Diseño e Implementación del Modelo de Datos (Verificación de Carga)",
   "comando_sql": "SELECT\n                COUNT(*) AS total_registros_importados,\n                COUNT(DISTINCT order_id) AS total_ordenes_unicas,\n                COUNT(DISTINCT customer_id) AS total_clientes_unicos,\n                COUNT(DISTINCT product_id) AS total_productos_unicos,\n                ROUND(SUM(sales), 2) AS volumen_ventas_total_usd,\n                ROUND(SUM(profit), 2) AS ganancia_total_acumulada_usd\n            FROM superstore_analitica;",
-  "fecha_ejecucion": "2026-11-11T09:15:48.158163-04:00",
+  "fecha_ejecucion": "2026-11-11T09:59:26.313560-04:00",
   "filas_retornadas": 1,
-  "tiempo_segundos": 0.0074,
+  "tiempo_segundos": 0.0083,
   "columnas": [
     "total_registros_importados",
     "total_ordenes_unicas",
