@@ -1,0 +1,60 @@
+{
+  "pregunta_id": "06",
+  "titulo": "Pregunta 6. Análisis del Impacto de los Descuentos sobre la Rentabilidad",
+  "comando_sql": "WITH transacciones_clasificadas AS (\n                SELECT\n                    row_id,\n                    category,\n                    sub_category,\n                    sales,\n                    discount,\n                    profit,\n                    CASE\n                        WHEN discount = 0.00 THEN '1. Sin descuento (0%)'\n                        WHEN discount > 0.00 AND discount <= 0.20 THEN '2. Descuento bajo (0% - 20%]'\n                        WHEN discount > 0.20 AND discount <= 0.50 THEN '3. Descuento medio (20% - 50%]'\n                        WHEN discount > 0.50 THEN '4. Descuento alto (> 50%)'\n                    END AS rango_descuento\n                FROM superstore_analitica\n            )\n            SELECT\n                rango_descuento,\n                COUNT(*) AS total_transacciones,\n                ROUND(SUM(sales), 2) AS ventas_totales_usd,\n                ROUND(SUM(profit), 2) AS ganancia_total_usd,\n                ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS margen_rentabilidad_pct,\n                SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) AS registros_con_perdidas,\n                ROUND((SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)), 2) AS pct_operaciones_no_rentables,\n                ROUND(AVG(discount) * 100, 2) AS descuento_promedio_pct\n            FROM transacciones_clasificadas\n            GROUP BY rango_descuento\n            ORDER BY rango_descuento ASC;",
+  "fecha_ejecucion": "2026-11-11T09:15:48.231682-04:00",
+  "filas_retornadas": 4,
+  "tiempo_segundos": 0.0074,
+  "columnas": [
+    "rango_descuento",
+    "total_transacciones",
+    "ventas_totales_usd",
+    "ganancia_total_usd",
+    "margen_rentabilidad_pct",
+    "registros_con_perdidas",
+    "pct_operaciones_no_rentables",
+    "descuento_promedio_pct"
+  ],
+  "filas": [
+    [
+      "1. Sin descuento (0%)",
+      "4798",
+      "1087908.47",
+      "320987.77",
+      "29.51",
+      "0.0",
+      "0.0",
+      "0.0"
+    ],
+    [
+      "2. Descuento bajo (0% - 20%]",
+      "3803",
+      "846522.17",
+      "100786.28",
+      "11.91",
+      "523.0",
+      "13.75",
+      "19.68"
+    ],
+    [
+      "3. Descuento medio (20% - 50%]",
+      "537",
+      "298541.65",
+      "-58817.21",
+      "-19.7",
+      "492.0",
+      "91.62",
+      "36.7"
+    ],
+    [
+      "4. Descuento alto (> 50%)",
+      "856",
+      "64228.74",
+      "-76559.23",
+      "-119.2",
+      "856.0",
+      "100.0",
+      "71.89"
+    ]
+  ]
+}

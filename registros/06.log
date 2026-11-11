@@ -1,0 +1,37 @@
+0: jdbc:hive2://localhost:10000/superstore_db> WITH transacciones_clasificadas AS (
+                SELECT
+                    row_id,
+                    category,
+                    sub_category,
+                    sales,
+                    discount,
+                    profit,
+                    CASE
+                        WHEN discount = 0.00 THEN '1. Sin descuento (0%)'
+                        WHEN discount > 0.00 AND discount <= 0.20 THEN '2. Descuento bajo (0% - 20%]'
+                        WHEN discount > 0.20 AND discount <= 0.50 THEN '3. Descuento medio (20% - 50%]'
+                        WHEN discount > 0.50 THEN '4. Descuento alto (> 50%)'
+                    END AS rango_descuento
+                FROM superstore_analitica
+            )
+            SELECT
+                rango_descuento,
+                COUNT(*) AS total_transacciones,
+                ROUND(SUM(sales), 2) AS ventas_totales_usd,
+                ROUND(SUM(profit), 2) AS ganancia_total_usd,
+                ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS margen_rentabilidad_pct,
+                SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) AS registros_con_perdidas,
+                ROUND((SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)), 2) AS pct_operaciones_no_rentables,
+                ROUND(AVG(discount) * 100, 2) AS descuento_promedio_pct
+            FROM transacciones_clasificadas
+            GROUP BY rango_descuento
+            ORDER BY rango_descuento ASC;
++--------------------------------+---------------------+--------------------+--------------------+-------------------------+------------------------+------------------------------+------------------------+
+| rango_descuento                | total_transacciones | ventas_totales_usd | ganancia_total_usd | margen_rentabilidad_pct | registros_con_perdidas | pct_operaciones_no_rentables | descuento_promedio_pct |
++--------------------------------+---------------------+--------------------+--------------------+-------------------------+------------------------+------------------------------+------------------------+
+| 1. Sin descuento (0%)          |                4798 |         1087908.47 |          320987.77 |                   29.51 |                    0.0 |                          0.0 |                    0.0 |
+| 2. Descuento bajo (0% - 20%]   |                3803 |          846522.17 |          100786.28 |                   11.91 |                  523.0 |                        13.75 |                  19.68 |
+| 3. Descuento medio (20% - 50%] |                 537 |          298541.65 |          -58817.21 |                   -19.7 |                  492.0 |                        91.62 |                   36.7 |
+| 4. Descuento alto (> 50%)      |                 856 |           64228.74 |          -76559.23 |                  -119.2 |                  856.0 |                        100.0 |                  71.89 |
++--------------------------------+---------------------+--------------------+--------------------+-------------------------+------------------------+------------------------------+------------------------+
+4 rows selected (0.007 seconds)
