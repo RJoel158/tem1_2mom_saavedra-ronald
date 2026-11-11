@@ -1,0 +1,20 @@
+0: jdbc:hive2://localhost:10000/superstore_db> SELECT
+                COUNT(*) AS total_registros,
+                COUNT(row_id) - COUNT(DISTINCT row_id) AS duplicados_row_id,
+                COUNT(DISTINCT order_id) AS ordenes_unicas,
+                COUNT(DISTINCT customer_id) AS clientes_unicos,
+                SUM(CASE WHEN row_id IS NULL OR order_id IS NULL OR order_date IS NULL OR 
+                              customer_id IS NULL OR product_id IS NULL OR sales IS NULL OR 
+                              profit IS NULL THEN 1 ELSE 0 END) AS campos_con_valores_null,
+                SUM(CASE WHEN order_date IS NULL OR ship_date IS NULL THEN 1 ELSE 0 END) AS fechas_invalidas_inconsistentes,
+                SUM(CASE WHEN sales <= 0 THEN 1 ELSE 0 END) AS ventas_menor_igual_cero,
+                SUM(CASE WHEN discount < 0.0 OR discount > 1.0 THEN 1 ELSE 0 END) AS descuentos_fuera_intervalo,
+                SUM(CASE WHEN ship_date < order_date THEN 1 ELSE 0 END) AS envio_anterior_a_pedido,
+                SUM(CASE WHEN profit < 0 THEN 1 ELSE 0 END) AS registros_con_perdida_operativa
+            FROM superstore_analitica;
++-----------------+-------------------+----------------+-----------------+-------------------------+---------------------------------+-------------------------+----------------------------+-------------------------+---------------------------------+
+| total_registros | duplicados_row_id | ordenes_unicas | clientes_unicos | campos_con_valores_null | fechas_invalidas_inconsistentes | ventas_menor_igual_cero | descuentos_fuera_intervalo | envio_anterior_a_pedido | registros_con_perdida_operativa |
++-----------------+-------------------+----------------+-----------------+-------------------------+---------------------------------+-------------------------+----------------------------+-------------------------+---------------------------------+
+|          9994.0 |               0.0 |         5009.0 |           793.0 |                     0.0 |                             0.0 |                     0.0 |                        0.0 |                     0.0 |                          1871.0 |
++-----------------+-------------------+----------------+-----------------+-------------------------+---------------------------------+-------------------------+----------------------------+-------------------------+---------------------------------+
+1 rows selected (0.009 seconds)
