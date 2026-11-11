@@ -98,18 +98,11 @@ docker exec -it superstore-hive-server beeline -u "jdbc:hive2://localhost:10000/
 Para estaciones de trabajo sin Docker o sin privilegios de virtualización, el proyecto incluye el runner analítico automatizado:
 
 ```powershell
-# 1. Ejecutar todas las consultas analiticas HiveQL y generar logs JSON
+# Ejecutar todas las consultas analiticas HiveQL y verificar las metricas
 python scripts/ejecutor_hiveql_local.py
-
-# 2. Renderizar evidencias graficas estilo terminal Beeline
-python scripts/generar_evidencias_terminal.py
-
-# 3. Generar informe tecnico formal en Microsoft Word (.docx)
-python scripts/generar_informe_docx.py
-
-# 4. Exportar a formato PDF
-powershell -ExecutionPolicy Bypass -File scripts/exportar_pdf.ps1
 ```
+
+> **Nota de entrega:** Los informes completos en Word y PDF (`informe/EXAMEN PRACTICO vF (1).docx` y `.pdf`) y las capturas gráficas de terminal en `evidencias/` se encuentran consolidados y listos para revisión y sustentación.
 
 ---
 
