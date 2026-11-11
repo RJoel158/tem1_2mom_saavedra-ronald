@@ -1,0 +1,85 @@
+name: tem1-2mom-superstore-ronald
+
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    hostname: namenode
+    container_name: superstore-namenode
+    user: root
+    entrypoint: /bin/bash
+    command: ["-c", "mkdir -p /data/name; if [ ! -f /data/name/current/VERSION ]; then hdfs namenode -format -nonInteractive; fi; exec hdfs namenode"]
+    ports:
+      - "127.0.0.1:9870:9870"
+    volumes:
+      - namenode_data:/data/name
+      - ./config/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./config/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+    networks:
+      - hive-network
+
+  datanode:
+    image: apache/hadoop:3.4.1
+    hostname: datanode
+    container_name: superstore-datanode
+    user: root
+    entrypoint: /bin/bash
+    command: ["-c", "mkdir -p /data/data; exec hdfs datanode"]
+    depends_on:
+      - namenode
+    volumes:
+      - datanode_data:/data/data
+      - ./config/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./config/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+    networks:
+      - hive-network
+
+  hive-metastore:
+    image: apache/hive:4.0.1
+    hostname: hive-metastore
+    container_name: superstore-hive-metastore
+    user: root
+    environment:
+      SERVICE_NAME: metastore
+      HIVE_CUSTOM_CONF_DIR: /hive_custom_conf
+      SERVICE_OPTS: "-Djavax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/data/metastore_db;create=true"
+    depends_on:
+      - namenode
+    volumes:
+      - metastore_data:/data
+      - ./config/core-site.xml:/hive_custom_conf/core-site.xml:ro
+      - ./config/hdfs-site.xml:/hive_custom_conf/hdfs-site.xml:ro
+      - ./config/hive-site.xml:/hive_custom_conf/hive-site.xml:ro
+    networks:
+      - hive-network
+
+  hive-server:
+    image: apache/hive:4.0.1
+    hostname: hive-server
+    container_name: superstore-hive-server
+    user: root
+    environment:
+      SERVICE_NAME: hiveserver2
+      HIVE_CUSTOM_CONF_DIR: /hive_custom_conf
+    depends_on:
+      - hive-metastore
+    ports:
+      - "127.0.0.1:10000:10000"
+      - "127.0.0.1:10002:10002"
+    volumes:
+      - ./config/core-site.xml:/hive_custom_conf/core-site.xml:ro
+      - ./config/hdfs-site.xml:/hive_custom_conf/hdfs-site.xml:ro
+      - ./config/hive-site.xml:/hive_custom_conf/hive-site.xml:ro
+      - ./config/mapred-site.xml:/hive_custom_conf/mapred-site.xml:ro
+      - ../datos:/data/superstore_host:ro
+      - ./sql:/data/sql:ro
+    networks:
+      - hive-network
+
+volumes:
+  namenode_data:
+  datanode_data:
+  metastore_data:
+
+networks:
+  hive-network:
+    driver: bridge
