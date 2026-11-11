@@ -1,0 +1,16 @@
+# Caches y compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de entorno y configuraciones de IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporales de Office
+~$*.docx
+~$*.xlsx
+*.tmp
