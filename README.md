@@ -143,7 +143,7 @@ Consulte la especificación completa en [DICCIONARIO_DATOS.md](DICCIONARIO_DATOS
 
 ---
 
-## 5. Desarrollo de Preguntas (Estructura Estricta de Evaluación)
+## 5. Desarrollo de Preguntas
 
 ---
 
@@ -814,7 +814,6 @@ El procesamiento de volúmenes masivos en Apache Hive exige optimizaciones a niv
 
 ## 8. Entregables Disponibles en este Repositorio
 
-- **Documento Word Oficial:** [`informe/Informe_Examen2M_Ronald_Saavedra.docx`](informe/Informe_Examen2M_Ronald_Saavedra.docx)
 - **Documento PDF Oficial:** [`informe/Informe_Examen2M_Ronald_Saavedra.pdf`](informe/Informe_Examen2M_Ronald_Saavedra.pdf)
 - **Diccionario de Datos:** [`DICCIONARIO_DATOS.md`](DICCIONARIO_DATOS.md) y [`datos/metadata.json`](datos/metadata.json)
 - **Scripts HiveQL Oficiales:** [`proyecto/sql/`](proyecto/sql/) (10 scripts SQL DDL, DML, Consultas y Optimización)
