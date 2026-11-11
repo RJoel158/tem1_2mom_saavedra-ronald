@@ -1,0 +1,14 @@
+0: jdbc:hive2://localhost:10000/superstore_db> SELECT
+                COUNT(*) AS total_registros_importados,
+                COUNT(DISTINCT order_id) AS total_ordenes_unicas,
+                COUNT(DISTINCT customer_id) AS total_clientes_unicos,
+                COUNT(DISTINCT product_id) AS total_productos_unicos,
+                ROUND(SUM(sales), 2) AS volumen_ventas_total_usd,
+                ROUND(SUM(profit), 2) AS ganancia_total_acumulada_usd
+            FROM superstore_analitica;
++----------------------------+----------------------+-----------------------+------------------------+--------------------------+------------------------------+
+| total_registros_importados | total_ordenes_unicas | total_clientes_unicos | total_productos_unicos | volumen_ventas_total_usd | ganancia_total_acumulada_usd |
++----------------------------+----------------------+-----------------------+------------------------+--------------------------+------------------------------+
+|                     9994.0 |               5009.0 |                 793.0 |                 1862.0 |               2297201.03 |                    286397.61 |
++----------------------------+----------------------+-----------------------+------------------------+--------------------------+------------------------------+
+1 rows selected (0.007 seconds)
