@@ -1,0 +1,64 @@
+{
+  "pregunta_id": "04",
+  "titulo": "Pregunta 4. Segmentación Avanzada de Clientes mediante Modelo RFM",
+  "comando_sql": "WITH max_fecha_dataset AS (\n                SELECT MAX(order_date) AS fecha_corte FROM superstore_analitica\n            ),\n            rfm_base AS (\n                SELECT\n                    s.customer_id,\n                    s.customer_name,\n                    s.segment,\n                    DATEDIFF(m.fecha_corte, MAX(s.order_date)) AS recency_dias,\n                    COUNT(DISTINCT s.order_id) AS frequency_ordenes,\n                    ROUND(SUM(s.sales), 2) AS monetary_ventas\n                FROM superstore_analitica s\n                CROSS JOIN max_fecha_dataset m\n                GROUP BY s.customer_id, s.customer_name, s.segment, m.fecha_corte\n            ),\n            rfm_scores AS (\n                SELECT\n                    customer_id,\n                    customer_name,\n                    segment,\n                    recency_dias,\n                    frequency_ordenes,\n                    monetary_ventas,\n                    NTILE(4) OVER (ORDER BY recency_dias DESC) AS r_score,\n                    NTILE(4) OVER (ORDER BY frequency_ordenes ASC) AS f_score,\n                    NTILE(4) OVER (ORDER BY monetary_ventas ASC) AS m_score\n                FROM rfm_base\n            ),\n            rfm_clasificacion AS (\n                SELECT\n                    customer_id,\n                    customer_name,\n                    segment,\n                    recency_dias,\n                    frequency_ordenes,\n                    monetary_ventas,\n                    r_score,\n                    f_score,\n                    m_score,\n                    (r_score + f_score + m_score) AS score_total_rfm,\n                    CASE\n                        WHEN r_score >= 3 AND f_score >= 3 AND m_score >= 3 THEN 'Clientes de Alto Valor (Champions)'\n                        WHEN f_score >= 3 AND m_score >= 2 THEN 'Clientes Recurrentes Fidelizados (Loyal)'\n                        WHEN r_score <= 2 AND f_score >= 2 THEN 'En Riesgo de Abandono (At Risk)'\n                        WHEN r_score >= 3 AND f_score < 3 THEN 'Nuevos / Prometedores (Promising)'\n                        ELSE 'Inactivos / Hibernando (Hibernating)'\n                    END AS perfil_cliente_rfm\n                FROM rfm_scores\n            )\n            SELECT\n                perfil_cliente_rfm,\n                COUNT(*) AS total_clientes,\n                ROUND(COUNT(*) * 100.0 / 793, 2) AS porcentaje_clientes_pct,\n                ROUND(AVG(recency_dias), 1) AS recency_promedio_dias,\n                ROUND(AVG(frequency_ordenes), 1) AS frecuencia_promedio_ordenes,\n                ROUND(SUM(monetary_ventas), 2) AS facturacion_total_usd,\n                ROUND(AVG(monetary_ventas), 2) AS ticket_promedio_acumulado_usd\n            FROM rfm_clasificacion\n            GROUP BY perfil_cliente_rfm\n            ORDER BY facturacion_total_usd DESC;",
+  "fecha_ejecucion": "2026-11-11T09:15:48.209840-04:00",
+  "filas_retornadas": 5,
+  "tiempo_segundos": 0.0222,
+  "columnas": [
+    "perfil_cliente_rfm",
+    "total_clientes",
+    "porcentaje_clientes_pct",
+    "recency_promedio_dias",
+    "frecuencia_promedio_ordenes",
+    "facturacion_total_usd",
+    "ticket_promedio_acumulado_usd"
+  ],
+  "filas": [
+    [
+      "Clientes de Alto Valor (Champions)",
+      "180",
+      "22.7",
+      "31.9",
+      "8.7",
+      "829709.6",
+      "4609.5"
+    ],
+    [
+      "Clientes Recurrentes Fidelizados (Loyal)",
+      "188",
+      "23.71",
+      "140.5",
+      "8.1",
+      "646739.01",
+      "3440.1"
+    ],
+    [
+      "Nuevos / Prometedores (Promising)",
+      "151",
+      "19.04",
+      "33.9",
+      "4.4",
+      "325586.16",
+      "2156.2"
+    ],
+    [
+      "En Riesgo de Abandono (At Risk)",
+      "133",
+      "16.77",
+      "219.0",
+      "5.6",
+      "317039.62",
+      "2383.76"
+    ],
+    [
+      "Inactivos / Hibernando (Hibernating)",
+      "141",
+      "17.78",
+      "354.6",
+      "3.5",
+      "178126.64",
+      "1263.31"
+    ]
+  ]
+}
