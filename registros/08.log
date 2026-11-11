@@ -1,0 +1,71 @@
+0: jdbc:hive2://localhost:10000/superstore_db> WITH producto_totales AS (
+                SELECT
+                    product_id,
+                    product_name,
+                    category,
+                    sub_category,
+                    ROUND(SUM(sales), 2) AS ventas_producto,
+                    ROUND(SUM(profit), 2) AS ganancia_producto
+                FROM superstore_analitica
+                GROUP BY product_id, product_name, category, sub_category
+            ),
+            constantes_globales AS (
+                SELECT
+                    SUM(ventas_producto) AS gran_total_ventas,
+                    SUM(CASE WHEN ganancia_producto > 0 THEN ganancia_producto ELSE 0 END) AS gran_total_ganancias_positivas,
+                    COUNT(*) AS total_catalogo_productos
+                FROM producto_totales
+            ),
+            pareto_ventas_calculo AS (
+                SELECT
+                    p.product_id,
+                    p.product_name,
+                    p.ventas_producto,
+                    ROUND((p.ventas_producto / c.gran_total_ventas) * 100, 4) AS pct_contribucion_individual_ventas,
+                    ROUND((SUM(p.ventas_producto) OVER (
+                        ORDER BY p.ventas_producto DESC 
+                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+                    ) / c.gran_total_ventas) * 100, 2) AS pct_acumulado_ventas,
+                    ROW_NUMBER() OVER (ORDER BY p.ventas_producto DESC) AS orden_ventas
+                FROM producto_totales p
+                CROSS JOIN constantes_globales c
+            ),
+            pareto_ganancias_calculo AS (
+                SELECT
+                    p.product_id,
+                    p.product_name,
+                    p.ganancia_producto,
+                    ROUND((p.ganancia_producto / c.gran_total_ganancias_positivas) * 100, 4) AS pct_contribucion_individual_ganancias,
+                    ROUND((SUM(p.ganancia_producto) OVER (
+                        ORDER BY p.ganancia_producto DESC 
+                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+                    ) / c.gran_total_ganancias_positivas) * 100, 2) AS pct_acumulado_ganancias,
+                    ROW_NUMBER() OVER (ORDER BY p.ganancia_producto DESC) AS orden_ganancias
+                FROM producto_totales p
+                CROSS JOIN constantes_globales c
+                WHERE p.ganancia_producto > 0
+            )
+            SELECT
+                'Pareto de Ventas (80% Facturación)' AS dimension_analisis,
+                COUNT(*) AS cantidad_articulos_umbral_80,
+                (SELECT total_catalogo_productos FROM constantes_globales) AS universo_total_catalogo,
+                ROUND((COUNT(*) * 100.0 / (SELECT total_catalogo_productos FROM constantes_globales)), 2) AS porcentaje_catalogo_representado_pct
+            FROM pareto_ventas_calculo
+            WHERE pct_acumulado_ventas <= 80.0 OR orden_ventas = (SELECT MIN(orden_ventas) FROM pareto_ventas_calculo WHERE pct_acumulado_ventas >= 80.0)
+
+            UNION ALL
+
+            SELECT
+                'Pareto de Ganancias (80% Utilidad)' AS dimension_analisis,
+                COUNT(*) AS cantidad_articulos_umbral_80,
+                (SELECT total_catalogo_productos FROM constantes_globales) AS universo_total_catalogo,
+                ROUND((COUNT(*) * 100.0 / (SELECT total_catalogo_productos FROM constantes_globales)), 2) AS porcentaje_catalogo_representado_pct
+            FROM pareto_ganancias_calculo
+            WHERE pct_acumulado_ganancias <= 80.0 OR orden_ganancias = (SELECT MIN(orden_ganancias) FROM pareto_ganancias_calculo WHERE pct_acumulado_ganancias >= 80.0);
++------------------------------------+------------------------------+-------------------------+--------------------------------------+
+| dimension_analisis                 | cantidad_articulos_umbral_80 | universo_total_catalogo | porcentaje_catalogo_representado_pct |
++------------------------------------+------------------------------+-------------------------+--------------------------------------+
+| Pareto de Ventas (80% Facturación) |                          423 |                    1894 |                                22.33 |
+| Pareto de Ganancias (80% Utilidad) |                          347 |                    1894 |                                18.32 |
++------------------------------------+------------------------------+-------------------------+--------------------------------------+
+2 rows selected (0.015 seconds)

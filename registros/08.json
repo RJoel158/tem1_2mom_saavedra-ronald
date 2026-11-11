@@ -1,0 +1,28 @@
+{
+  "pregunta_id": "08",
+  "titulo": "Pregunta 8. Análisis Pareto 80/20 de Ventas y Rentabilidad",
+  "comando_sql": "WITH producto_totales AS (\n                SELECT\n                    product_id,\n                    product_name,\n                    category,\n                    sub_category,\n                    ROUND(SUM(sales), 2) AS ventas_producto,\n                    ROUND(SUM(profit), 2) AS ganancia_producto\n                FROM superstore_analitica\n                GROUP BY product_id, product_name, category, sub_category\n            ),\n            constantes_globales AS (\n                SELECT\n                    SUM(ventas_producto) AS gran_total_ventas,\n                    SUM(CASE WHEN ganancia_producto > 0 THEN ganancia_producto ELSE 0 END) AS gran_total_ganancias_positivas,\n                    COUNT(*) AS total_catalogo_productos\n                FROM producto_totales\n            ),\n            pareto_ventas_calculo AS (\n                SELECT\n                    p.product_id,\n                    p.product_name,\n                    p.ventas_producto,\n                    ROUND((p.ventas_producto / c.gran_total_ventas) * 100, 4) AS pct_contribucion_individual_ventas,\n                    ROUND((SUM(p.ventas_producto) OVER (\n                        ORDER BY p.ventas_producto DESC \n                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n                    ) / c.gran_total_ventas) * 100, 2) AS pct_acumulado_ventas,\n                    ROW_NUMBER() OVER (ORDER BY p.ventas_producto DESC) AS orden_ventas\n                FROM producto_totales p\n                CROSS JOIN constantes_globales c\n            ),\n            pareto_ganancias_calculo AS (\n                SELECT\n                    p.product_id,\n                    p.product_name,\n                    p.ganancia_producto,\n                    ROUND((p.ganancia_producto / c.gran_total_ganancias_positivas) * 100, 4) AS pct_contribucion_individual_ganancias,\n                    ROUND((SUM(p.ganancia_producto) OVER (\n                        ORDER BY p.ganancia_producto DESC \n                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n                    ) / c.gran_total_ganancias_positivas) * 100, 2) AS pct_acumulado_ganancias,\n                    ROW_NUMBER() OVER (ORDER BY p.ganancia_producto DESC) AS orden_ganancias\n                FROM producto_totales p\n                CROSS JOIN constantes_globales c\n                WHERE p.ganancia_producto > 0\n            )\n            SELECT\n                'Pareto de Ventas (80% Facturación)' AS dimension_analisis,\n                COUNT(*) AS cantidad_articulos_umbral_80,\n                (SELECT total_catalogo_productos FROM constantes_globales) AS universo_total_catalogo,\n                ROUND((COUNT(*) * 100.0 / (SELECT total_catalogo_productos FROM constantes_globales)), 2) AS porcentaje_catalogo_representado_pct\n            FROM pareto_ventas_calculo\n            WHERE pct_acumulado_ventas <= 80.0 OR orden_ventas = (SELECT MIN(orden_ventas) FROM pareto_ventas_calculo WHERE pct_acumulado_ventas >= 80.0)\n\n            UNION ALL\n\n            SELECT\n                'Pareto de Ganancias (80% Utilidad)' AS dimension_analisis,\n                COUNT(*) AS cantidad_articulos_umbral_80,\n                (SELECT total_catalogo_productos FROM constantes_globales) AS universo_total_catalogo,\n                ROUND((COUNT(*) * 100.0 / (SELECT total_catalogo_productos FROM constantes_globales)), 2) AS porcentaje_catalogo_representado_pct\n            FROM pareto_ganancias_calculo\n            WHERE pct_acumulado_ganancias <= 80.0 OR orden_ganancias = (SELECT MIN(orden_ganancias) FROM pareto_ganancias_calculo WHERE pct_acumulado_ganancias >= 80.0);",
+  "fecha_ejecucion": "2026-11-11T09:15:48.260301-04:00",
+  "filas_retornadas": 2,
+  "tiempo_segundos": 0.0147,
+  "columnas": [
+    "dimension_analisis",
+    "cantidad_articulos_umbral_80",
+    "universo_total_catalogo",
+    "porcentaje_catalogo_representado_pct"
+  ],
+  "filas": [
+    [
+      "Pareto de Ventas (80% Facturación)",
+      "423",
+      "1894",
+      "22.33"
+    ],
+    [
+      "Pareto de Ganancias (80% Utilidad)",
+      "347",
+      "1894",
+      "18.32"
+    ]
+  ]
+}
