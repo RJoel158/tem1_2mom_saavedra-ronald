@@ -1,0 +1,56 @@
+0: jdbc:hive2://localhost:10000/superstore_db> WITH producto_metricas AS (
+                SELECT
+                    product_id,
+                    product_name,
+                    category,
+                    sub_category,
+                    ROUND(SUM(sales), 2) AS ventas_totales,
+                    ROUND(SUM(profit), 2) AS ganancia_total,
+                    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS margen_rentabilidad_pct
+                FROM superstore_analitica
+                GROUP BY product_id, product_name, category, sub_category
+            ),
+            producto_analitico AS (
+                SELECT
+                    product_id,
+                    product_name,
+                    category,
+                    sub_category,
+                    ventas_totales,
+                    ganancia_total,
+                    margen_rentabilidad_pct,
+                    DENSE_RANK() OVER (PARTITION BY category ORDER BY ganancia_total DESC) AS rank_ganancia_categoria,
+                    RANK() OVER (ORDER BY ventas_totales DESC) AS rank_ventas_global,
+                    RANK() OVER (ORDER BY ganancia_total ASC) AS rank_peor_rentabilidad_global,
+                    ROUND(SUM(ganancia_total) OVER (
+                        PARTITION BY category 
+                        ORDER BY ganancia_total DESC 
+                        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+                    ), 2) AS ganancia_acumulada_categoria
+                FROM producto_metricas
+            )
+            SELECT
+                category,
+                rank_ganancia_categoria,
+                SUBSTR(product_name, 1, 45) AS producto,
+                ventas_totales,
+                ganancia_total,
+                margen_rentabilidad_pct,
+                ganancia_acumulada_categoria
+            FROM producto_analitico
+            WHERE rank_ganancia_categoria <= 3
+            ORDER BY category, rank_ganancia_categoria ASC;
++-----------------+-------------------------+-----------------------------------------------+----------------+----------------+-------------------------+------------------------------+
+| category        | rank_ganancia_categoria | producto                                      | ventas_totales | ganancia_total | margen_rentabilidad_pct | ganancia_acumulada_categoria |
++-----------------+-------------------------+-----------------------------------------------+----------------+----------------+-------------------------+------------------------------+
+| Furniture       |                       1 | Hon Deluxe Fabric Upholstered Stacking Chairs |       10637.53 |        1927.45 |                   18.12 |                      1927.45 |
+| Furniture       |                       2 | Global Deluxe High-Back Manager's Chair       |        8665.21 |        1558.59 |                   17.99 |                      3486.04 |
+| Furniture       |                       3 | Hon Pagoda Stacking Chairs                    |        6483.79 |         1540.7 |                   23.76 |                      5026.74 |
+| Office Supplies |                       1 | Fellowes PB500 Electric Punch Plastic Comb Bi |       27453.38 |        7753.06 |                   28.24 |                      7753.06 |
+| Office Supplies |                       2 | Ibico EPK-21 Electric Binding System          |       15875.92 |        3345.29 |                   21.07 |                     11098.35 |
+| Office Supplies |                       3 | Honeywell Enviracaire Portable HEPA Air Clean |       11304.44 |        3247.02 |                   28.72 |                     14345.37 |
+| Technology      |                       1 | Canon imageCLASS 2200 Advanced Copier         |       61599.83 |       25199.94 |                   40.91 |                     25199.94 |
+| Technology      |                       2 | Hewlett Packard LaserJet 3310 Copier          |       18839.68 |        6983.89 |                   37.07 |                     32183.83 |
+| Technology      |                       3 | Canon PC1060 Personal Laser Copier            |       11619.83 |        4570.94 |                   39.34 |                     36754.77 |
++-----------------+-------------------------+-----------------------------------------------+----------------+----------------+-------------------------+------------------------------+
+9 rows selected (0.010 seconds)
