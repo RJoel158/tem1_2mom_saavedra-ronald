@@ -1,0 +1,180 @@
+{
+  "pregunta_id": "03",
+  "titulo": "Pregunta 3. Análisis de Evolución Comercial por Región y Año",
+  "comando_sql": "WITH evolucion_base AS (\n                SELECT\n                    region,\n                    YEAR(order_date) AS anio,\n                    ROUND(SUM(sales), 2) AS ventas_totales,\n                    ROUND(SUM(profit), 2) AS ganancia_total,\n                    ROUND((SUM(profit) / SUM(sales)) * 100, 2) AS margen_rentabilidad_pct\n                FROM superstore_analitica\n                GROUP BY region, YEAR(order_date)\n            ),\n            metricas_ventana AS (\n                SELECT\n                    region,\n                    anio,\n                    ventas_totales,\n                    ganancia_total,\n                    margen_rentabilidad_pct,\n                    LAG(ventas_totales) OVER (PARTITION BY region ORDER BY anio) AS ventas_anio_anterior,\n                    ROUND(\n                        ((ventas_totales - LAG(ventas_totales) OVER (PARTITION BY region ORDER BY anio)) \n                         / LAG(ventas_totales) OVER (PARTITION BY region ORDER BY anio)) * 100, 2\n                    ) AS variacion_ventas_pct,\n                    LAG(ganancia_total) OVER (PARTITION BY region ORDER BY anio) AS ganancia_anio_anterior,\n                    ROUND(\n                        ((ganancia_total - LAG(ganancia_total) OVER (PARTITION BY region ORDER BY anio)) \n                         / LAG(ganancia_total) OVER (PARTITION BY region ORDER BY anio)) * 100, 2\n                    ) AS variacion_ganancia_pct,\n                    DENSE_RANK() OVER (PARTITION BY anio ORDER BY ganancia_total DESC) AS rank_ganancia_desc,\n                    DENSE_RANK() OVER (PARTITION BY anio ORDER BY ganancia_total ASC) AS rank_ganancia_asc\n                FROM evolucion_base\n            )\n            SELECT\n                region,\n                anio,\n                ventas_totales,\n                ganancia_total,\n                margen_rentabilidad_pct,\n                COALESCE(CAST(variacion_ventas_pct AS STRING), 'N/A (Base)') AS var_ventas_yoy,\n                COALESCE(CAST(variacion_ganancia_pct AS STRING), 'N/A (Base)') AS var_ganancia_yoy,\n                CASE\n                    WHEN rank_ganancia_desc = 1 THEN 'Mejor Desempeño'\n                    WHEN rank_ganancia_asc = 1 THEN 'Peor Desempeño'\n                    ELSE 'Desempeño Intermedio'\n                END AS evaluacion_comercial\n            FROM metricas_ventana\n            ORDER BY anio ASC, ganancia_total DESC;",
+  "fecha_ejecucion": "2026-11-11T09:15:48.185630-04:00",
+  "filas_retornadas": 16,
+  "tiempo_segundos": 0.0117,
+  "columnas": [
+    "region",
+    "anio",
+    "ventas_totales",
+    "ganancia_total",
+    "margen_rentabilidad_pct",
+    "var_ventas_yoy",
+    "var_ganancia_yoy",
+    "evaluacion_comercial"
+  ],
+  "filas": [
+    [
+      "West",
+      "2014",
+      "147883.07",
+      "20065.72",
+      "13.57",
+      "N/A (Base)",
+      "N/A (Base)",
+      "Mejor Desempeño"
+    ],
+    [
+      "East",
+      "2014",
+      "128680.44",
+      "17059.58",
+      "13.26",
+      "N/A (Base)",
+      "N/A (Base)",
+      "Desempeño Intermedio"
+    ],
+    [
+      "South",
+      "2014",
+      "103845.88",
+      "11879.16",
+      "11.44",
+      "N/A (Base)",
+      "N/A (Base)",
+      "Desempeño Intermedio"
+    ],
+    [
+      "Central",
+      "2014",
+      "103838.15",
+      "539.57",
+      "0.52",
+      "N/A (Base)",
+      "N/A (Base)",
+      "Peor Desempeño"
+    ],
+    [
+      "East",
+      "2015",
+      "156332.01",
+      "21091.08",
+      "13.49",
+      "21.49",
+      "23.63",
+      "Mejor Desempeño"
+    ],
+    [
+      "West",
+      "2015",
+      "139966.24",
+      "20492.16",
+      "14.64",
+      "-5.35",
+      "2.13",
+      "Desempeño Intermedio"
+    ],
+    [
+      "Central",
+      "2015",
+      "102874.24",
+      "11716.78",
+      "11.39",
+      "-0.93",
+      "2071.5",
+      "Desempeño Intermedio"
+    ],
+    [
+      "South",
+      "2015",
+      "71359.97",
+      "8318.63",
+      "11.66",
+      "-31.28",
+      "-29.97",
+      "Peor Desempeño"
+    ],
+    [
+      "West",
+      "2016",
+      "187480.26",
+      "24051.56",
+      "12.83",
+      "33.95",
+      "17.37",
+      "Mejor Desempeño"
+    ],
+    [
+      "East",
+      "2016",
+      "180685.94",
+      "20141.55",
+      "11.15",
+      "15.58",
+      "-4.5",
+      "Desempeño Intermedio"
+    ],
+    [
+      "Central",
+      "2016",
+      "147429.42",
+      "19899.19",
+      "13.5",
+      "43.31",
+      "69.83",
+      "Desempeño Intermedio"
+    ],
+    [
+      "South",
+      "2016",
+      "93610.22",
+      "17702.92",
+      "18.91",
+      "31.18",
+      "112.81",
+      "Peor Desempeño"
+    ],
+    [
+      "West",
+      "2017",
+      "250128.36",
+      "43809.3",
+      "17.51",
+      "33.42",
+      "82.15",
+      "Mejor Desempeño"
+    ],
+    [
+      "East",
+      "2017",
+      "213082.95",
+      "33230.53",
+      "15.6",
+      "17.93",
+      "64.98",
+      "Desempeño Intermedio"
+    ],
+    [
+      "South",
+      "2017",
+      "122905.82",
+      "8848.98",
+      "7.2",
+      "31.3",
+      "-50.01",
+      "Desempeño Intermedio"
+    ],
+    [
+      "Central",
+      "2017",
+      "147098.06",
+      "7550.9",
+      "5.13",
+      "-0.22",
+      "-62.05",
+      "Peor Desempeño"
+    ]
+  ]
+}
