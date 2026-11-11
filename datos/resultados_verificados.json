@@ -1,0 +1,888 @@
+{
+  "pregunta_01": {
+    "titulo": "Pregunta 1. Diseño e Implementación del Modelo de Datos (Verificación de Carga)",
+    "filas": 1,
+    "datos": [
+      {
+        "total_registros_importados": 9994,
+        "total_ordenes_unicas": 5009,
+        "total_clientes_unicos": 793,
+        "total_productos_unicos": 1862,
+        "volumen_ventas_total_usd": 2297201.03,
+        "ganancia_total_acumulada_usd": 286397.61
+      }
+    ]
+  },
+  "pregunta_02": {
+    "titulo": "Pregunta 2. Auditoría Integral de Calidad e Integridad de Datos",
+    "filas": 1,
+    "datos": [
+      {
+        "total_registros": 9994,
+        "duplicados_row_id": 0,
+        "ordenes_unicas": 5009,
+        "clientes_unicos": 793,
+        "campos_con_valores_null": 0.0,
+        "fechas_invalidas_inconsistentes": 0.0,
+        "ventas_menor_igual_cero": 0.0,
+        "descuentos_fuera_intervalo": 0.0,
+        "envio_anterior_a_pedido": 0.0,
+        "registros_con_perdida_operativa": 1871.0
+      }
+    ]
+  },
+  "pregunta_03": {
+    "titulo": "Pregunta 3. Análisis de Evolución Comercial por Región y Año",
+    "filas": 16,
+    "datos": [
+      {
+        "region": "West",
+        "anio": 2014,
+        "ventas_totales": 147883.07,
+        "ganancia_total": 20065.72,
+        "margen_rentabilidad_pct": 13.57,
+        "var_ventas_yoy": "N/A (Base)",
+        "var_ganancia_yoy": "N/A (Base)",
+        "evaluacion_comercial": "Mejor Desempeño"
+      },
+      {
+        "region": "East",
+        "anio": 2014,
+        "ventas_totales": 128680.44,
+        "ganancia_total": 17059.58,
+        "margen_rentabilidad_pct": 13.26,
+        "var_ventas_yoy": "N/A (Base)",
+        "var_ganancia_yoy": "N/A (Base)",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "South",
+        "anio": 2014,
+        "ventas_totales": 103845.88,
+        "ganancia_total": 11879.16,
+        "margen_rentabilidad_pct": 11.44,
+        "var_ventas_yoy": "N/A (Base)",
+        "var_ganancia_yoy": "N/A (Base)",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "Central",
+        "anio": 2014,
+        "ventas_totales": 103838.15,
+        "ganancia_total": 539.57,
+        "margen_rentabilidad_pct": 0.52,
+        "var_ventas_yoy": "N/A (Base)",
+        "var_ganancia_yoy": "N/A (Base)",
+        "evaluacion_comercial": "Peor Desempeño"
+      },
+      {
+        "region": "East",
+        "anio": 2015,
+        "ventas_totales": 156332.01,
+        "ganancia_total": 21091.08,
+        "margen_rentabilidad_pct": 13.49,
+        "var_ventas_yoy": "21.49",
+        "var_ganancia_yoy": "23.63",
+        "evaluacion_comercial": "Mejor Desempeño"
+      },
+      {
+        "region": "West",
+        "anio": 2015,
+        "ventas_totales": 139966.24,
+        "ganancia_total": 20492.16,
+        "margen_rentabilidad_pct": 14.64,
+        "var_ventas_yoy": "-5.35",
+        "var_ganancia_yoy": "2.13",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "Central",
+        "anio": 2015,
+        "ventas_totales": 102874.24,
+        "ganancia_total": 11716.78,
+        "margen_rentabilidad_pct": 11.39,
+        "var_ventas_yoy": "-0.93",
+        "var_ganancia_yoy": "2071.5",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "South",
+        "anio": 2015,
+        "ventas_totales": 71359.97,
+        "ganancia_total": 8318.63,
+        "margen_rentabilidad_pct": 11.66,
+        "var_ventas_yoy": "-31.28",
+        "var_ganancia_yoy": "-29.97",
+        "evaluacion_comercial": "Peor Desempeño"
+      },
+      {
+        "region": "West",
+        "anio": 2016,
+        "ventas_totales": 187480.26,
+        "ganancia_total": 24051.56,
+        "margen_rentabilidad_pct": 12.83,
+        "var_ventas_yoy": "33.95",
+        "var_ganancia_yoy": "17.37",
+        "evaluacion_comercial": "Mejor Desempeño"
+      },
+      {
+        "region": "East",
+        "anio": 2016,
+        "ventas_totales": 180685.94,
+        "ganancia_total": 20141.55,
+        "margen_rentabilidad_pct": 11.15,
+        "var_ventas_yoy": "15.58",
+        "var_ganancia_yoy": "-4.5",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "Central",
+        "anio": 2016,
+        "ventas_totales": 147429.42,
+        "ganancia_total": 19899.19,
+        "margen_rentabilidad_pct": 13.5,
+        "var_ventas_yoy": "43.31",
+        "var_ganancia_yoy": "69.83",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "South",
+        "anio": 2016,
+        "ventas_totales": 93610.22,
+        "ganancia_total": 17702.92,
+        "margen_rentabilidad_pct": 18.91,
+        "var_ventas_yoy": "31.18",
+        "var_ganancia_yoy": "112.81",
+        "evaluacion_comercial": "Peor Desempeño"
+      },
+      {
+        "region": "West",
+        "anio": 2017,
+        "ventas_totales": 250128.36,
+        "ganancia_total": 43809.3,
+        "margen_rentabilidad_pct": 17.51,
+        "var_ventas_yoy": "33.42",
+        "var_ganancia_yoy": "82.15",
+        "evaluacion_comercial": "Mejor Desempeño"
+      },
+      {
+        "region": "East",
+        "anio": 2017,
+        "ventas_totales": 213082.95,
+        "ganancia_total": 33230.53,
+        "margen_rentabilidad_pct": 15.6,
+        "var_ventas_yoy": "17.93",
+        "var_ganancia_yoy": "64.98",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "South",
+        "anio": 2017,
+        "ventas_totales": 122905.82,
+        "ganancia_total": 8848.98,
+        "margen_rentabilidad_pct": 7.2,
+        "var_ventas_yoy": "31.3",
+        "var_ganancia_yoy": "-50.01",
+        "evaluacion_comercial": "Desempeño Intermedio"
+      },
+      {
+        "region": "Central",
+        "anio": 2017,
+        "ventas_totales": 147098.06,
+        "ganancia_total": 7550.9,
+        "margen_rentabilidad_pct": 5.13,
+        "var_ventas_yoy": "-0.22",
+        "var_ganancia_yoy": "-62.05",
+        "evaluacion_comercial": "Peor Desempeño"
+      }
+    ]
+  },
+  "pregunta_04": {
+    "titulo": "Pregunta 4. Segmentación Avanzada de Clientes mediante Modelo RFM",
+    "filas": 5,
+    "datos": [
+      {
+        "perfil_cliente_rfm": "Clientes de Alto Valor (Champions)",
+        "total_clientes": 180,
+        "porcentaje_clientes_pct": 22.7,
+        "recency_promedio_dias": 31.9,
+        "frecuencia_promedio_ordenes": 8.7,
+        "facturacion_total_usd": 829709.6,
+        "ticket_promedio_acumulado_usd": 4609.5
+      },
+      {
+        "perfil_cliente_rfm": "Clientes Recurrentes Fidelizados (Loyal)",
+        "total_clientes": 188,
+        "porcentaje_clientes_pct": 23.71,
+        "recency_promedio_dias": 140.5,
+        "frecuencia_promedio_ordenes": 8.1,
+        "facturacion_total_usd": 646739.01,
+        "ticket_promedio_acumulado_usd": 3440.1
+      },
+      {
+        "perfil_cliente_rfm": "Nuevos / Prometedores (Promising)",
+        "total_clientes": 151,
+        "porcentaje_clientes_pct": 19.04,
+        "recency_promedio_dias": 33.9,
+        "frecuencia_promedio_ordenes": 4.4,
+        "facturacion_total_usd": 325586.16,
+        "ticket_promedio_acumulado_usd": 2156.2
+      },
+      {
+        "perfil_cliente_rfm": "En Riesgo de Abandono (At Risk)",
+        "total_clientes": 133,
+        "porcentaje_clientes_pct": 16.77,
+        "recency_promedio_dias": 219.0,
+        "frecuencia_promedio_ordenes": 5.6,
+        "facturacion_total_usd": 317039.62,
+        "ticket_promedio_acumulado_usd": 2383.76
+      },
+      {
+        "perfil_cliente_rfm": "Inactivos / Hibernando (Hibernating)",
+        "total_clientes": 141,
+        "porcentaje_clientes_pct": 17.78,
+        "recency_promedio_dias": 354.6,
+        "frecuencia_promedio_ordenes": 3.5,
+        "facturacion_total_usd": 178126.64,
+        "ticket_promedio_acumulado_usd": 1263.31
+      }
+    ]
+  },
+  "pregunta_05": {
+    "titulo": "Pregunta 5. Ranking de Productos según Rentabilidad y Volumen Comercial",
+    "filas": 9,
+    "datos": [
+      {
+        "category": "Furniture",
+        "rank_ganancia_categoria": 1,
+        "producto": "Hon Deluxe Fabric Upholstered Stacking Chairs",
+        "ventas_totales": 10637.53,
+        "ganancia_total": 1927.45,
+        "margen_rentabilidad_pct": 18.12,
+        "ganancia_acumulada_categoria": 1927.45
+      },
+      {
+        "category": "Furniture",
+        "rank_ganancia_categoria": 2,
+        "producto": "Global Deluxe High-Back Manager's Chair",
+        "ventas_totales": 8665.21,
+        "ganancia_total": 1558.59,
+        "margen_rentabilidad_pct": 17.99,
+        "ganancia_acumulada_categoria": 3486.04
+      },
+      {
+        "category": "Furniture",
+        "rank_ganancia_categoria": 3,
+        "producto": "Hon Pagoda Stacking Chairs",
+        "ventas_totales": 6483.79,
+        "ganancia_total": 1540.7,
+        "margen_rentabilidad_pct": 23.76,
+        "ganancia_acumulada_categoria": 5026.74
+      },
+      {
+        "category": "Office Supplies",
+        "rank_ganancia_categoria": 1,
+        "producto": "Fellowes PB500 Electric Punch Plastic Comb Bi",
+        "ventas_totales": 27453.38,
+        "ganancia_total": 7753.06,
+        "margen_rentabilidad_pct": 28.24,
+        "ganancia_acumulada_categoria": 7753.06
+      },
+      {
+        "category": "Office Supplies",
+        "rank_ganancia_categoria": 2,
+        "producto": "Ibico EPK-21 Electric Binding System",
+        "ventas_totales": 15875.92,
+        "ganancia_total": 3345.29,
+        "margen_rentabilidad_pct": 21.07,
+        "ganancia_acumulada_categoria": 11098.35
+      },
+      {
+        "category": "Office Supplies",
+        "rank_ganancia_categoria": 3,
+        "producto": "Honeywell Enviracaire Portable HEPA Air Clean",
+        "ventas_totales": 11304.44,
+        "ganancia_total": 3247.02,
+        "margen_rentabilidad_pct": 28.72,
+        "ganancia_acumulada_categoria": 14345.37
+      },
+      {
+        "category": "Technology",
+        "rank_ganancia_categoria": 1,
+        "producto": "Canon imageCLASS 2200 Advanced Copier",
+        "ventas_totales": 61599.83,
+        "ganancia_total": 25199.94,
+        "margen_rentabilidad_pct": 40.91,
+        "ganancia_acumulada_categoria": 25199.94
+      },
+      {
+        "category": "Technology",
+        "rank_ganancia_categoria": 2,
+        "producto": "Hewlett Packard LaserJet 3310 Copier",
+        "ventas_totales": 18839.68,
+        "ganancia_total": 6983.89,
+        "margen_rentabilidad_pct": 37.07,
+        "ganancia_acumulada_categoria": 32183.83
+      },
+      {
+        "category": "Technology",
+        "rank_ganancia_categoria": 3,
+        "producto": "Canon PC1060 Personal Laser Copier",
+        "ventas_totales": 11619.83,
+        "ganancia_total": 4570.94,
+        "margen_rentabilidad_pct": 39.34,
+        "ganancia_acumulada_categoria": 36754.77
+      }
+    ]
+  },
+  "pregunta_06": {
+    "titulo": "Pregunta 6. Análisis del Impacto de los Descuentos sobre la Rentabilidad",
+    "filas": 4,
+    "datos": [
+      {
+        "rango_descuento": "1. Sin descuento (0%)",
+        "total_transacciones": 4798,
+        "ventas_totales_usd": 1087908.47,
+        "ganancia_total_usd": 320987.77,
+        "margen_rentabilidad_pct": 29.51,
+        "registros_con_perdidas": 0.0,
+        "pct_operaciones_no_rentables": 0.0,
+        "descuento_promedio_pct": 0.0
+      },
+      {
+        "rango_descuento": "2. Descuento bajo (0% - 20%]",
+        "total_transacciones": 3803,
+        "ventas_totales_usd": 846522.17,
+        "ganancia_total_usd": 100786.28,
+        "margen_rentabilidad_pct": 11.91,
+        "registros_con_perdidas": 523.0,
+        "pct_operaciones_no_rentables": 13.75,
+        "descuento_promedio_pct": 19.68
+      },
+      {
+        "rango_descuento": "3. Descuento medio (20% - 50%]",
+        "total_transacciones": 537,
+        "ventas_totales_usd": 298541.65,
+        "ganancia_total_usd": -58817.21,
+        "margen_rentabilidad_pct": -19.7,
+        "registros_con_perdidas": 492.0,
+        "pct_operaciones_no_rentables": 91.62,
+        "descuento_promedio_pct": 36.7
+      },
+      {
+        "rango_descuento": "4. Descuento alto (> 50%)",
+        "total_transacciones": 856,
+        "ventas_totales_usd": 64228.74,
+        "ganancia_total_usd": -76559.23,
+        "margen_rentabilidad_pct": -119.2,
+        "registros_con_perdidas": 856.0,
+        "pct_operaciones_no_rentables": 100.0,
+        "descuento_promedio_pct": 71.89
+      }
+    ]
+  },
+  "pregunta_07": {
+    "titulo": "Pregunta 7. Análisis de Tendencias Temporales (Evolución Mensual, MoM, YoY y Media Móvil)",
+    "filas": 48,
+    "datos": [
+      {
+        "anio_mes": "2014-01",
+        "ventas_mes": 14236.9,
+        "ganancia_mes": 2450.18,
+        "margen_mes_pct": 17.21,
+        "var_mom_pct": "N/A",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 14236.9,
+        "clasificacion_mes": "Valle: Top 3"
+      },
+      {
+        "anio_mes": "2014-02",
+        "ventas_mes": 4519.92,
+        "ganancia_mes": 862.3,
+        "margen_mes_pct": 19.08,
+        "var_mom_pct": "-68.25",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 9378.41,
+        "clasificacion_mes": "Valle: Top 1"
+      },
+      {
+        "anio_mes": "2014-03",
+        "ventas_mes": 55691.04,
+        "ganancia_mes": 498.72,
+        "margen_mes_pct": 0.9,
+        "var_mom_pct": "1132.12",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 24815.95,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-04",
+        "ventas_mes": 28295.35,
+        "ganancia_mes": 3488.86,
+        "margen_mes_pct": 12.33,
+        "var_mom_pct": "-49.19",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 29502.1,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-05",
+        "ventas_mes": 23648.28,
+        "ganancia_mes": 2738.73,
+        "margen_mes_pct": 11.58,
+        "var_mom_pct": "-16.42",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 35878.22,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-06",
+        "ventas_mes": 34595.13,
+        "ganancia_mes": 4976.56,
+        "margen_mes_pct": 14.39,
+        "var_mom_pct": "46.29",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 28846.25,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-07",
+        "ventas_mes": 33946.37,
+        "ganancia_mes": -841.47,
+        "margen_mes_pct": -2.48,
+        "var_mom_pct": "-1.88",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 30729.93,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-08",
+        "ventas_mes": 27909.47,
+        "ganancia_mes": 5318.11,
+        "margen_mes_pct": 19.05,
+        "var_mom_pct": "-17.78",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 32150.32,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-09",
+        "ventas_mes": 81777.34,
+        "ganancia_mes": 8328.08,
+        "margen_mes_pct": 10.18,
+        "var_mom_pct": "193.01",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 47877.73,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-10",
+        "ventas_mes": 31453.37,
+        "ganancia_mes": 3448.23,
+        "margen_mes_pct": 10.96,
+        "var_mom_pct": "-61.54",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 47046.73,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-11",
+        "ventas_mes": 78628.73,
+        "ganancia_mes": 9292.15,
+        "margen_mes_pct": 11.82,
+        "var_mom_pct": "149.99",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 63953.15,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2014-12",
+        "ventas_mes": 69545.64,
+        "ganancia_mes": 8983.58,
+        "margen_mes_pct": 12.92,
+        "var_mom_pct": "-11.55",
+        "var_yoy_pct": "N/A",
+        "promedio_movil_3_meses": 59875.91,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-01",
+        "ventas_mes": 18174.08,
+        "ganancia_mes": -3280.97,
+        "margen_mes_pct": -18.05,
+        "var_mom_pct": "-73.87",
+        "var_yoy_pct": "27.65",
+        "promedio_movil_3_meses": 55449.48,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-02",
+        "ventas_mes": 11951.4,
+        "ganancia_mes": 2813.84,
+        "margen_mes_pct": 23.54,
+        "var_mom_pct": "-34.24",
+        "var_yoy_pct": "164.42",
+        "promedio_movil_3_meses": 33223.71,
+        "clasificacion_mes": "Valle: Top 2"
+      },
+      {
+        "anio_mes": "2015-03",
+        "ventas_mes": 38726.26,
+        "ganancia_mes": 9732.07,
+        "margen_mes_pct": 25.13,
+        "var_mom_pct": "224.03",
+        "var_yoy_pct": "-30.46",
+        "promedio_movil_3_meses": 22950.58,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-04",
+        "ventas_mes": 34195.25,
+        "ganancia_mes": 4187.52,
+        "margen_mes_pct": 12.25,
+        "var_mom_pct": "-11.7",
+        "var_yoy_pct": "20.85",
+        "promedio_movil_3_meses": 28290.97,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-05",
+        "ventas_mes": 30131.72,
+        "ganancia_mes": 4667.83,
+        "margen_mes_pct": 15.49,
+        "var_mom_pct": "-11.88",
+        "var_yoy_pct": "27.42",
+        "promedio_movil_3_meses": 34351.08,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-06",
+        "ventas_mes": 24797.31,
+        "ganancia_mes": 3335.55,
+        "margen_mes_pct": 13.45,
+        "var_mom_pct": "-17.7",
+        "var_yoy_pct": "-28.32",
+        "promedio_movil_3_meses": 29708.09,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-07",
+        "ventas_mes": 28765.32,
+        "ganancia_mes": 3288.7,
+        "margen_mes_pct": 11.43,
+        "var_mom_pct": "16.0",
+        "var_yoy_pct": "-15.26",
+        "promedio_movil_3_meses": 27898.12,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-08",
+        "ventas_mes": 36898.32,
+        "ganancia_mes": 5355.83,
+        "margen_mes_pct": 14.52,
+        "var_mom_pct": "28.27",
+        "var_yoy_pct": "32.21",
+        "promedio_movil_3_meses": 30153.65,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-09",
+        "ventas_mes": 64595.87,
+        "ganancia_mes": 8209.17,
+        "margen_mes_pct": 12.71,
+        "var_mom_pct": "75.06",
+        "var_yoy_pct": "-21.01",
+        "promedio_movil_3_meses": 43419.84,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-10",
+        "ventas_mes": 31404.9,
+        "ganancia_mes": 2817.36,
+        "margen_mes_pct": 8.97,
+        "var_mom_pct": "-51.38",
+        "var_yoy_pct": "-0.15",
+        "promedio_movil_3_meses": 44299.7,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-11",
+        "ventas_mes": 75972.51,
+        "ganancia_mes": 12474.8,
+        "margen_mes_pct": 16.42,
+        "var_mom_pct": "141.91",
+        "var_yoy_pct": "-3.38",
+        "promedio_movil_3_meses": 57324.43,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2015-12",
+        "ventas_mes": 74919.52,
+        "ganancia_mes": 8016.95,
+        "margen_mes_pct": 10.7,
+        "var_mom_pct": "-1.39",
+        "var_yoy_pct": "7.73",
+        "promedio_movil_3_meses": 60765.64,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-01",
+        "ventas_mes": 18542.52,
+        "ganancia_mes": 2824.82,
+        "margen_mes_pct": 15.23,
+        "var_mom_pct": "-75.25",
+        "var_yoy_pct": "2.03",
+        "promedio_movil_3_meses": 56478.18,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-02",
+        "ventas_mes": 22978.82,
+        "ganancia_mes": 5004.59,
+        "margen_mes_pct": 21.78,
+        "var_mom_pct": "23.93",
+        "var_yoy_pct": "92.27",
+        "promedio_movil_3_meses": 38813.62,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-03",
+        "ventas_mes": 51715.86,
+        "ganancia_mes": 3611.98,
+        "margen_mes_pct": 6.98,
+        "var_mom_pct": "125.06",
+        "var_yoy_pct": "33.54",
+        "promedio_movil_3_meses": 31079.07,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-04",
+        "ventas_mes": 38750.04,
+        "ganancia_mes": 2977.88,
+        "margen_mes_pct": 7.68,
+        "var_mom_pct": "-25.07",
+        "var_yoy_pct": "13.32",
+        "promedio_movil_3_meses": 37814.91,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-05",
+        "ventas_mes": 56987.75,
+        "ganancia_mes": 8662.08,
+        "margen_mes_pct": 15.2,
+        "var_mom_pct": "47.07",
+        "var_yoy_pct": "89.13",
+        "promedio_movil_3_meses": 49151.22,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-06",
+        "ventas_mes": 40344.54,
+        "ganancia_mes": 4750.32,
+        "margen_mes_pct": 11.77,
+        "var_mom_pct": "-29.2",
+        "var_yoy_pct": "62.7",
+        "promedio_movil_3_meses": 45360.78,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-07",
+        "ventas_mes": 39261.99,
+        "ganancia_mes": 4432.89,
+        "margen_mes_pct": 11.29,
+        "var_mom_pct": "-2.68",
+        "var_yoy_pct": "36.49",
+        "promedio_movil_3_meses": 45531.43,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-08",
+        "ventas_mes": 31115.35,
+        "ganancia_mes": 2062.05,
+        "margen_mes_pct": 6.63,
+        "var_mom_pct": "-20.75",
+        "var_yoy_pct": "-15.67",
+        "promedio_movil_3_meses": 36907.29,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-09",
+        "ventas_mes": 73410.09,
+        "ganancia_mes": 9328.65,
+        "margen_mes_pct": 12.71,
+        "var_mom_pct": "135.93",
+        "var_yoy_pct": "13.65",
+        "promedio_movil_3_meses": 47929.14,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-10",
+        "ventas_mes": 59687.79,
+        "ganancia_mes": 16243.22,
+        "margen_mes_pct": 27.21,
+        "var_mom_pct": "-18.69",
+        "var_yoy_pct": "90.06",
+        "promedio_movil_3_meses": 54737.74,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-11",
+        "ventas_mes": 79412.02,
+        "ganancia_mes": 4011.45,
+        "margen_mes_pct": 5.05,
+        "var_mom_pct": "33.05",
+        "var_yoy_pct": "4.53",
+        "promedio_movil_3_meses": 70836.63,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2016-12",
+        "ventas_mes": 96999.07,
+        "ganancia_mes": 17885.29,
+        "margen_mes_pct": 18.44,
+        "var_mom_pct": "22.15",
+        "var_yoy_pct": "29.47",
+        "promedio_movil_3_meses": 78699.63,
+        "clasificacion_mes": "Pico: Top 2"
+      },
+      {
+        "anio_mes": "2017-01",
+        "ventas_mes": 43971.37,
+        "ganancia_mes": 7140.45,
+        "margen_mes_pct": 16.24,
+        "var_mom_pct": "-54.67",
+        "var_yoy_pct": "137.14",
+        "promedio_movil_3_meses": 73460.82,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-02",
+        "ventas_mes": 20301.12,
+        "ganancia_mes": 1613.89,
+        "margen_mes_pct": 7.95,
+        "var_mom_pct": "-53.83",
+        "var_yoy_pct": "-11.65",
+        "promedio_movil_3_meses": 53757.19,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-03",
+        "ventas_mes": 58872.35,
+        "ganancia_mes": 14751.86,
+        "margen_mes_pct": 25.06,
+        "var_mom_pct": "190.0",
+        "var_yoy_pct": "13.84",
+        "promedio_movil_3_meses": 41048.28,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-04",
+        "ventas_mes": 36521.52,
+        "ganancia_mes": 933.3,
+        "margen_mes_pct": 2.56,
+        "var_mom_pct": "-37.96",
+        "var_yoy_pct": "-5.75",
+        "promedio_movil_3_meses": 38565.0,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-05",
+        "ventas_mes": 44261.08,
+        "ganancia_mes": 6342.69,
+        "margen_mes_pct": 14.33,
+        "var_mom_pct": "21.19",
+        "var_yoy_pct": "-22.33",
+        "promedio_movil_3_meses": 46551.65,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-06",
+        "ventas_mes": 52981.73,
+        "ganancia_mes": 8223.42,
+        "margen_mes_pct": 15.52,
+        "var_mom_pct": "19.7",
+        "var_yoy_pct": "31.32",
+        "promedio_movil_3_meses": 44588.11,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-07",
+        "ventas_mes": 45264.43,
+        "ganancia_mes": 6952.6,
+        "margen_mes_pct": 15.36,
+        "var_mom_pct": "-14.57",
+        "var_yoy_pct": "15.29",
+        "promedio_movil_3_meses": 47502.41,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-08",
+        "ventas_mes": 63120.85,
+        "ganancia_mes": 9041.09,
+        "margen_mes_pct": 14.32,
+        "var_mom_pct": "39.45",
+        "var_yoy_pct": "102.86",
+        "promedio_movil_3_meses": 53789.0,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-09",
+        "ventas_mes": 87866.66,
+        "ganancia_mes": 10991.56,
+        "margen_mes_pct": 12.51,
+        "var_mom_pct": "39.2",
+        "var_yoy_pct": "19.69",
+        "promedio_movil_3_meses": 65417.31,
+        "clasificacion_mes": "Pico: Top 3"
+      },
+      {
+        "anio_mes": "2017-10",
+        "ventas_mes": 77776.96,
+        "ganancia_mes": 9275.37,
+        "margen_mes_pct": 11.93,
+        "var_mom_pct": "-11.48",
+        "var_yoy_pct": "30.31",
+        "promedio_movil_3_meses": 76254.82,
+        "clasificacion_mes": "Normal"
+      },
+      {
+        "anio_mes": "2017-11",
+        "ventas_mes": 118447.81,
+        "ganancia_mes": 9690.08,
+        "margen_mes_pct": 8.18,
+        "var_mom_pct": "52.29",
+        "var_yoy_pct": "49.16",
+        "promedio_movil_3_meses": 94697.14,
+        "clasificacion_mes": "Pico: Top 1"
+      },
+      {
+        "anio_mes": "2017-12",
+        "ventas_mes": 83829.31,
+        "ganancia_mes": 8483.4,
+        "margen_mes_pct": 10.12,
+        "var_mom_pct": "-29.23",
+        "var_yoy_pct": "-13.58",
+        "promedio_movil_3_meses": 93351.36,
+        "clasificacion_mes": "Normal"
+      }
+    ]
+  },
+  "pregunta_08": {
+    "titulo": "Pregunta 8. Análisis Pareto 80/20 de Ventas y Rentabilidad",
+    "filas": 2,
+    "datos": [
+      {
+        "dimension_analisis": "Pareto de Ventas (80% Facturación)",
+        "cantidad_articulos_umbral_80": 423,
+        "universo_total_catalogo": 1894,
+        "porcentaje_catalogo_representado_pct": 22.33
+      },
+      {
+        "dimension_analisis": "Pareto de Ganancias (80% Utilidad)",
+        "cantidad_articulos_umbral_80": 347,
+        "universo_total_catalogo": 1894,
+        "porcentaje_catalogo_representado_pct": 18.32
+      }
+    ]
+  }
+}
