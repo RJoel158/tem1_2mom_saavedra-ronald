@@ -1,0 +1,218 @@
+{
+  "dataset": "Superstore Sales Dataset (Sample Superstore)",
+  "archivo_origen": "Sample - Superstore.csv",
+  "total_registros": 9994,
+  "total_columnas": 21,
+  "encoding_origen": "latin1",
+  "encoding_normalizado": "utf-8",
+  "rango_fechas": {
+    "fecha_minima_pedido": "2014-01-03",
+    "fecha_maxima_pedido": "2017-12-30",
+    "fecha_minima_envio": "2014-01-07",
+    "fecha_maxima_envio": "2018-01-05"
+  },
+  "metricas_globales": {
+    "ordenes_unicas": 5009,
+    "clientes_unicos": 793,
+    "productos_unicos": 1862,
+    "ciudades_unicas": 531,
+    "estados_unicos": 49,
+    "regiones_unicas": 4,
+    "categorias_unicas": 3,
+    "subcategorias_unicas": 17,
+    "ventas_totales_usd": 2297200.86,
+    "ganancia_total_usd": 286397.02,
+    "margen_global_pct": 12.47
+  },
+  "columnas": [
+    {
+      "posicion": 1,
+      "nombre_original": "Row ID",
+      "nombre_hive": "row_id",
+      "tipo_hive": "INT",
+      "descripcion": "Identificador secuencial unico de la fila en el dataset",
+      "restricciones": "NOT NULL, PRIMARY KEY, Rango 1 a 9994, Sin duplicados",
+      "ejemplo": 1
+    },
+    {
+      "posicion": 2,
+      "nombre_original": "Order ID",
+      "nombre_hive": "order_id",
+      "tipo_hive": "STRING",
+      "descripcion": "Identificador unico del pedido comercial (agrupa multiples productos)",
+      "restricciones": "NOT NULL, Formato alfanumerico (ej. CA-2016-152156)",
+      "ejemplo": "CA-2016-152156"
+    },
+    {
+      "posicion": 3,
+      "nombre_original": "Order Date",
+      "nombre_hive": "order_date",
+      "tipo_hive": "DATE",
+      "descripcion": "Fecha de creacion o emision de la orden de compra",
+      "restricciones": "NOT NULL, Formato ISO yyyy-MM-dd (parseado desde M/d/yyyy)",
+      "ejemplo": "2016-11-08"
+    },
+    {
+      "posicion": 4,
+      "nombre_original": "Ship Date",
+      "nombre_hive": "ship_date",
+      "tipo_hive": "DATE",
+      "descripcion": "Fecha de despacho logistico del pedido hacia el cliente",
+      "restricciones": "NOT NULL, ship_date >= order_date obligatoriamente",
+      "ejemplo": "2016-11-11"
+    },
+    {
+      "posicion": 5,
+      "nombre_original": "Ship Mode",
+      "nombre_hive": "ship_mode",
+      "tipo_hive": "STRING",
+      "descripcion": "Metodo o clase logistica de transporte asignada",
+      "restricciones": "Valores permitidos: Standard Class, Second Class, First Class, Same Day",
+      "ejemplo": "Second Class"
+    },
+    {
+      "posicion": 6,
+      "nombre_original": "Customer ID",
+      "nombre_hive": "customer_id",
+      "tipo_hive": "STRING",
+      "descripcion": "Identificador alfanumerico unico del cliente registrado",
+      "restricciones": "NOT NULL, 793 clientes unicos en catalogo",
+      "ejemplo": "CG-12520"
+    },
+    {
+      "posicion": 7,
+      "nombre_original": "Customer Name",
+      "nombre_hive": "customer_name",
+      "tipo_hive": "STRING",
+      "descripcion": "Nombre completo y apellido del cliente comprador",
+      "restricciones": "NOT NULL",
+      "ejemplo": "Claire Gute"
+    },
+    {
+      "posicion": 8,
+      "nombre_original": "Segment",
+      "nombre_hive": "segment",
+      "tipo_hive": "STRING",
+      "descripcion": "Segmento de mercado al que pertenece el cliente",
+      "restricciones": "Valores permitidos: Consumer, Corporate, Home Office",
+      "ejemplo": "Consumer"
+    },
+    {
+      "posicion": 9,
+      "nombre_original": "Country",
+      "nombre_hive": "country",
+      "tipo_hive": "STRING",
+      "descripcion": "Pais de origen de la transaccion comercial",
+      "restricciones": "NOT NULL, Valor constante: United States",
+      "ejemplo": "United States"
+    },
+    {
+      "posicion": 10,
+      "nombre_original": "City",
+      "nombre_hive": "city",
+      "tipo_hive": "STRING",
+      "descripcion": "Ciudad de entrega del pedido",
+      "restricciones": "NOT NULL, 531 ciudades registradas",
+      "ejemplo": "Henderson"
+    },
+    {
+      "posicion": 11,
+      "nombre_original": "State",
+      "nombre_hive": "state",
+      "tipo_hive": "STRING",
+      "descripcion": "Estado federado de los Estados Unidos",
+      "restricciones": "NOT NULL, 49 estados representados",
+      "ejemplo": "Kentucky"
+    },
+    {
+      "posicion": 12,
+      "nombre_original": "Postal Code",
+      "nombre_hive": "postal_code",
+      "tipo_hive": "STRING",
+      "descripcion": "Codigo postal de la zona de despacho",
+      "restricciones": "Preservado como STRING para proteger ceros iniciales de 5 digitos",
+      "ejemplo": "42420"
+    },
+    {
+      "posicion": 13,
+      "nombre_original": "Region",
+      "nombre_hive": "region",
+      "tipo_hive": "STRING",
+      "descripcion": "Macro region geografica comercial",
+      "restricciones": "Valores permitidos: South, West, Central, East",
+      "ejemplo": "South"
+    },
+    {
+      "posicion": 14,
+      "nombre_original": "Product ID",
+      "nombre_hive": "product_id",
+      "tipo_hive": "STRING",
+      "descripcion": "Identificador unico del producto en inventario",
+      "restricciones": "NOT NULL, 1862 codigos unicos",
+      "ejemplo": "FUR-BO-10001798"
+    },
+    {
+      "posicion": 15,
+      "nombre_original": "Category",
+      "nombre_hive": "category",
+      "tipo_hive": "STRING",
+      "descripcion": "Categoria principal del producto",
+      "restricciones": "Valores permitidos: Furniture, Office Supplies, Technology",
+      "ejemplo": "Furniture"
+    },
+    {
+      "posicion": 16,
+      "nombre_original": "Sub-Category",
+      "nombre_hive": "sub_category",
+      "tipo_hive": "STRING",
+      "descripcion": "Subcategoria especifica de la mercaderia",
+      "restricciones": "17 subcategorias de clasificacion",
+      "ejemplo": "Bookcases"
+    },
+    {
+      "posicion": 17,
+      "nombre_original": "Product Name",
+      "nombre_hive": "product_name",
+      "tipo_hive": "STRING",
+      "descripcion": "Descripcion comercial completa del articulo",
+      "restricciones": "NOT NULL",
+      "ejemplo": "Bush Somerset Collection Bookcase"
+    },
+    {
+      "posicion": 18,
+      "nombre_original": "Sales",
+      "nombre_hive": "sales",
+      "tipo_hive": "DECIMAL(10,2)",
+      "descripcion": "Monto bruto total facturado por la linea de venta en USD",
+      "restricciones": "NOT NULL, sales > 0.00 obligatoriamente",
+      "ejemplo": 261.96
+    },
+    {
+      "posicion": 19,
+      "nombre_original": "Quantity",
+      "nombre_hive": "quantity",
+      "tipo_hive": "INT",
+      "descripcion": "Numero de unidades comercializadas en el pedido",
+      "restricciones": "NOT NULL, quantity >= 1",
+      "ejemplo": 2
+    },
+    {
+      "posicion": 20,
+      "nombre_original": "Discount",
+      "nombre_hive": "discount",
+      "tipo_hive": "DECIMAL(4,2)",
+      "descripcion": "Porcentaje de descuento otorgado sobre el precio",
+      "restricciones": "Rango valido [0.00, 1.00], Maximo observado: 0.80",
+      "ejemplo": 0.00
+    },
+    {
+      "posicion": 21,
+      "nombre_original": "Profit",
+      "nombre_hive": "profit",
+      "tipo_hive": "DECIMAL(10,2)",
+      "descripcion": "Margen de ganancia o perdida neta generada en USD",
+      "restricciones": "Puede ser positivo (ganancia), cero o negativo (perdida)",
+      "ejemplo": 41.91
+    }
+  ]
+}
